@@ -1,13 +1,6 @@
 <div class="container-fluid">
   <div class="row mb-2">
     <h3>Edit penerima BLT</h3>
-    <?php if ($this->session->flashdata('tes')) : ?>
-      <div class="alert alert-primary" role="alert">
-        <?= $this->session->flashdata('tes') ?>
-      </div>
-    <?php endif ?>
-
-
   </div>
   <div class="row">
     <div class="col-lg-6 py-2 shadow">

@@ -8,8 +8,25 @@ class Kegiatan extends CI_Controller
     parent::__construct();
     is_logged_in();
   }
+  public function edit($id)
+  {
+    $email = $this->session->email;
+    $data['user'] = $this->Profile_model->getuser($email);
+    $data['kegiatan'] = $this->db->get_where('kegiatan', ['id' => $id])->row();
+    $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'required');
+    $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+    if ($this->form_validation->run() == false) {
 
-  public function delete($id = null)
+      $data['content'] = $this->load->view('kegiatan/edit', $data, true);
+      $this->load->view('layouts/dashboard', $data);
+    } else {
+      $foto_kegiatan_old = $data['kegiatan']->foto_kegiatan;
+      $user_id = $data['kegiatan']->user_id;
+
+      $this->Kegiatan_model->update($id, $foto_kegiatan_old, $user_id);
+    }
+  }
+  public function delete($id)
   {
     // mengambil data berdasarkan parameter $id untuk menghapus gambar nya
     $data['kegiatan'] = $this->db->get_where('kegiatan', ['id' => $id])->row();

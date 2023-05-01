@@ -17,7 +17,6 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
       Tambah bantuan
     </button>
-    <a href="<?= base_url('pdf/cetak_all') ?>" class="btn btn-dark shadow d-flex gap-2"><span>Cetak</span><i style="color: red;" class="fas fs-6 fa-file-pdf"></i></a>
   </div>
 
   <div class="table-responsive">

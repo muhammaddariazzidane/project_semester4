@@ -18,7 +18,7 @@
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Tambah data warga
     </button>
-    <a href="<?= base_url('pdf/cetak_all') ?>" class="btn btn-dark shadow d-flex gap-2"><span>Cetak</span><i style="color: red;" class="fas fs-6 fa-file-pdf"></i></a>
+    <a href="<?= base_url('pdf/cetak_data_warga') ?>" class="btn btn-dark shadow d-flex gap-2"><span>Cetak</span><i style="color: red;" class="fas fs-6 fa-file-pdf"></i></a>
   </div>
 
   <div class="table-responsive">
@@ -54,7 +54,7 @@
               <a onclick="return confirm('yakin mau hapus data warga?')" href="<?= base_url('warga/delete/') . $w->id ?>" class="btn btn-sm btn-danger">
                 <i class="fas fa-trash"></i>
               </a>
-              <a href="" class="btn btn-sm btn-primary">
+              <a href="<?= base_url('warga/edit/') . $w->id ?>" class="btn btn-sm btn-primary">
                 <i class="fas fa-pencil-alt"></i>
               </a>
             </td>

@@ -44,7 +44,8 @@
           <form accept="" method="post">
             <label for="Newsletter" class="form-label">Beri kami kritik & saran</label>
             <input type="text" class="form-control" Placeholder="Lorem, ipsum dolor.">
-            <?= $this->session->username ? '<button class="btn btn-warning mt-3" type="submit">Kirim</button>' : '<button class="btn btn-info mt-3" type="submit">Login</button>' ?>
+
+            <?= $this->session->username ? '<button class="btn btn-warning mt-3" type="submit">Kirim</button>' : '<a href="' . base_url('auth') . '" class="btn btn-primary mt-3">Login</a>' ?>
 
           </form>
         </div>

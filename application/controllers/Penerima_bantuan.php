@@ -130,13 +130,6 @@ class Penerima_bantuan extends CI_Controller
     $this->form_validation->set_rules('bantuan_id', 'Bantuan', 'required');
 
     if ($this->form_validation->run() == false) {
-
-      // $this->load->view('layouts/header');
-      // $this->load->view('components/sidebar');
-      // $this->load->view('components/navbar');
-      // $this->load->view('penerima/edit', $data);
-      // $this->load->view('layouts/footer');
-
       // ini view yang akan di tampilkan
       $data['content'] = $this->load->view('penerima/edit', $data, true);
       // ini adalah layout nya

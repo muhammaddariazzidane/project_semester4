@@ -43,9 +43,9 @@ class Profile extends CI_Controller
           $uploaded_image = $this->upload->data();
           $image = $uploaded_image['file_name'];
 
-          $data = array(
+          $data = [
             'username' => $username
-          );
+          ];
 
           if ($image) {
             $data['image'] = $image;

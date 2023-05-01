@@ -26,7 +26,7 @@
         Tambah penerima BLT
       </button>
       <!-- </div> -->
-      <a href="<?= base_url('pdf/cetak_all') ?>" class="btn btn-dark shadow d-flex gap-2"><span>Cetak</span><i style="color: red;" class="fas fs-6 fa-file-pdf"></i></a>
+      <a href="<?= base_url('pdf/cetak_data_penerima') ?>" class="btn btn-dark shadow d-flex gap-2"><span>Cetak</span><i style="color: red;" class="fas fs-6 fa-file-pdf"></i></a>
     </div>
     <div class="table-responsive">
       <table class="table table-bordered rounded-4 text-center table-hover shadow">

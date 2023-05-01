@@ -46,7 +46,7 @@
                 <a onclick="return confirm('yakin mau hapus kegiatan?')" href="<?= base_url('wisata/delete/') . $w->id ?>" class="btn btn-sm btn-danger">
                   <i class="fas fa-trash"></i>
                 </a>
-                <a href="" class="btn btn-sm btn-primary">
+                <a href="<?= base_url('wisata/edit/') . $w->id ?>" class="btn btn-sm btn-primary">
                   <i class="fas fa-pencil-alt"></i>
                 </a>
               </td>

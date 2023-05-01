@@ -6,7 +6,7 @@ class Auth extends CI_Controller
   public function index()
   {
     if ($this->session->username) {
-      redirect('/');
+      redirect('dashboard');
     }
     $this->form_validation->set_rules('email', 'Email', 'required');
     $this->form_validation->set_rules('password', 'Password', 'required');
@@ -69,8 +69,6 @@ class Auth extends CI_Controller
       $this->session->set_flashdata('error', 'login invalid');
       redirect('auth');
     }
-    // var_dump($user);
-    // die;
   }
   public function register()
   {

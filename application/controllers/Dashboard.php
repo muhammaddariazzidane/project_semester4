@@ -171,19 +171,6 @@ class Dashboard extends CI_Controller
       }
       redirect('dashboard');
     }
-    // if ($this->session->role_id == 1) {
-    //   $data['bantuan'] = $this->db->get('bantuan')->result();
-    //   $email = $this->session->email;
-    //   $data['user'] = $this->Profile_model->getuser($email);
-    //   $data['content'] = $this->load->view('bantuan/index', $data, true);
-    //   // ini adalah layout nya
-    //   $this->load->view('layouts/dashboard', $data);
-    // } else {
-    //   if ($this->session->role_id == 3) {
-    //     $this->load->view('errors/html/error_403');
-    //   }
-    //   redirect('dashboard');
-    // }
   }
   public function kegiatan()
   {
@@ -233,10 +220,9 @@ class Dashboard extends CI_Controller
   public function berita()
   {
     if ($this->session->role_id != 3) {
-      # code...
       // mengambil data kegiatan
-      $data['berita'] = $this->Berita_model->getBerita();
       $email = $this->session->email;
+      $data['berita'] = $this->Berita_model->getBerita();
       $data['user'] = $this->Profile_model->getuser($email);
       $this->form_validation->set_rules('nama_berita', 'Nama Berita', 'required');
       $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
@@ -254,7 +240,7 @@ class Dashboard extends CI_Controller
         if ($foto) {
           // config untuk upload gambar
           $upload_config['upload_path'] = './assets/img/berita/';
-          $upload_config['allowed_types'] = 'gif|jpg|png';
+          $upload_config['allowed_types'] = 'gif|jpg|jpeg|png';
           $upload_config['max_size'] = 12048; // 2MB
           $upload_config['encrypt_name'] = TRUE;
 
@@ -284,7 +270,6 @@ class Dashboard extends CI_Controller
       $data['user'] = $this->Profile_model->getuser($email);
       $this->form_validation->set_rules('nama_wisata', 'Nama Wisata', 'required');
       $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
-      // $this->form_validation->set_rules('foto_pertama', 'Foto pertama', 'required');
 
       if ($this->form_validation->run() == false) {
         // ini view
@@ -293,49 +278,7 @@ class Dashboard extends CI_Controller
         $this->load->view('layouts/dashboard', $data);
         $this->session->set_flashdata('error', 'Semua field harus terisi dengan benar');
       } else {
-        $nama_wisata = $this->input->post('nama_wisata');
-        $deskripsi = $this->input->post('deskripsi');
-
-        $upload_config['upload_path'] = './assets/img/wisata/';
-        $upload_config['allowed_types'] = 'gif|jpg|png';
-        $upload_config['max_size'] = 12048; // 2MB
-        $upload_config['encrypt_name'] = TRUE;
-
-        $this->load->library('upload', $upload_config);
-        // menangkap field foto_kegiatan dan mengambil nama gambar nya
-        if (!$this->upload->do_upload('foto_pertama')) {
-          // Jika gagal upload, tampilkan error
-          echo $this->upload->display_errors();
-          // $this->load->view('tambah_wisata', $error);
-        } else {
-          // Jika berhasil upload, ambil nama file
-          $file_pertama = $this->upload->data('file_name');
-          // Upload foto kedua (jika ada)
-          if ($this->upload->do_upload('foto_kedua')) {
-            $file_kedua = $this->upload->data('file_name');
-          } else {
-            $file_kedua = '';
-          }
-          // Upload foto ketiga (jika ada)
-          if ($this->upload->do_upload('foto_ketiga')) {
-            $file_ketiga = $this->upload->data('file_name');
-          } else {
-            $file_ketiga = '';
-          }
-          // Simpan data ke dalam database
-          $data = [
-            'nama_wisata' => $nama_wisata,
-            'deskripsi' => $deskripsi,
-            'foto_pertama' => $file_pertama,
-            'foto_kedua' => $file_kedua,
-            'foto_ketiga' => $file_ketiga
-          ];
-          $this->db->insert('wisata', $data);
-
-          $this->session->set_flashdata('success', 'Berhasil menambahkan wisata');
-          // Redirect ke halaman daftar wisata
-          redirect('dashboard/wisata');
-        }
+        $this->Wisata_model->store();
       }
     } else {
       $this->load->view('errors/html/error_403');

@@ -48,8 +48,8 @@
     <script>
       CKEDITOR.replace('deskripsi');
 
-      const opt = document.querySelector('#s')
-      const nomi = document.querySelector('#nomi')
+      // const opt = document.querySelector('#s')
+      // const nomi = document.querySelector('#nomi')
       const myAlert = document.querySelector('.alert')
       const formEdit = document.querySelector('#edit-form')
 
@@ -67,8 +67,17 @@
       }
 
       function tes() {
-        if (opt.attributes.value = 'sembako') {
-          nomi.classList.toggle('d-none')
+        const select = document.querySelector('#select');
+        const nomi = document.querySelector('#nomi');
+        switch (select.value) {
+          case 'uang':
+            nomi.classList.remove('d-none');
+            break;
+          case 'sembako':
+            nomi.classList.add('d-none');
+            break;
+          default:
+            break;
         }
       }
 

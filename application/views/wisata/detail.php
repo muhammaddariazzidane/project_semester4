@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <img src="<?= base_url('assets/img/wisata/') . $wisata->foto_pertama ?>" alt="Wisata" class="img-fluid">
       <?php if ($wisata->foto_kedua && $wisata->foto_ketiga) : ?>
-        <div class="d-flex justify-content-center px-5 gap-2">
+        <div class="d-flex justify-content-center px-5 mt-2 gap-2">
           <div class="col-md-4 shadow">
             <img src="<?= base_url('assets/img/wisata/') . $wisata->foto_kedua ?>" alt="Wisata" class="img-fluid">
           </div>
