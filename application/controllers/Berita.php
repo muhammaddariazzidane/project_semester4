@@ -23,8 +23,7 @@ class Berita extends CI_Controller
     } else {
       $foto_berita_old = $data['berita']->foto_berita;
       $user_id = $data['berita']->user_id;
-      // var_dump($user_id);
-      // die;
+
       $this->Berita_model->update($id, $foto_berita_old, $user_id);
     }
   }

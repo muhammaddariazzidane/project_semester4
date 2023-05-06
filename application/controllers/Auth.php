@@ -76,8 +76,8 @@ class Auth extends CI_Controller
       redirect('/');
     }
     // 
-    $this->form_validation->set_rules('username', 'Username', 'required');
-    $this->form_validation->set_rules('email', 'Email', 'required|is_unique[user.email]');
+    $this->form_validation->set_rules('username', 'Username', 'required|max_length[20]');
+    $this->form_validation->set_rules('email', 'Email', 'required|is_unique[user.email]|max_length[25]');
     $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
 
     if ($this->form_validation->run() == false) {
@@ -85,9 +85,29 @@ class Auth extends CI_Controller
       $data['content'] = $this->load->view('auth/register', '', true);
       // ini adalah layout nya
       $this->load->view('layouts/auth', $data);
-      // redirect('auth/register');
     } else {
       $this->Auth_model->store();
+      $this->session->set_flashdata('success', 'Berhasil registrasi, silahkan login!');
+      redirect('auth');
+    }
+  }
+  public function register_admin()
+  {
+    if ($this->session->username) {
+      redirect('/');
+    }
+    // 
+    $this->form_validation->set_rules('username', 'Username', 'required|max_length[20]');
+    $this->form_validation->set_rules('email', 'Email', 'required|is_unique[user.email]|max_length[25]');
+    $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+
+    if ($this->form_validation->run() == false) {
+      $data['title'] = 'Register Admin';
+      $data['content'] = $this->load->view('auth/register_admin', '', true);
+      // ini adalah layout nya
+      $this->load->view('layouts/auth', $data);
+    } else {
+      $this->Auth_model->store_admin();
       $this->session->set_flashdata('success', 'Berhasil registrasi, silahkan login!');
       redirect('auth');
     }

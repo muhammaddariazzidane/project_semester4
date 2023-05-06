@@ -11,7 +11,7 @@ class Wisata extends CI_Controller
   }
   public function edit($id)
   {
-    $this->form_validation->set_rules('nama_wisata', 'Nama Wisata', 'required');
+    $this->form_validation->set_rules('nama_wisata', 'Nama Wisata', 'required|max_length[20]');
     $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
 
     $data['wisata'] = $this->db->get_where('wisata', ['id' => $id])->row();

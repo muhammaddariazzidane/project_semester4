@@ -110,6 +110,21 @@ class Dashboard extends CI_Controller
       // redirect('/');
     }
   }
+  public function data()
+  {
+    $data['admin'] = $this->db->get_where('user', ['role_id' => 1])->num_rows();
+    $data['rt'] = $this->db->get_where('user', ['role_id' => 2])->num_rows();
+    $data['users'] = $this->db->get_where('user', ['role_id' => 3])->num_rows();
+    $data['all'] = $this->User_model->getUsers();
+    $email = $this->session->email;
+    $data['user'] = $this->Profile_model->getuser($email);
+    // var_dump($data['user']);
+    // die;
+    $data['content'] = $this->load->view('data/index', $data, true);
+    // ini adalah layout nya
+    $this->load->view('layouts/dashboard', $data);
+    $this->session->set_flashdata('error', 'Isi data warga dengan benar');
+  }
   public function warga()
   {
     if ($this->session->role_id != 3) {
@@ -152,8 +167,8 @@ class Dashboard extends CI_Controller
       $email = $this->session->email;
       $data['user'] = $this->Profile_model->getuser($email);
 
-      $this->form_validation->set_rules('nama_bantuan', 'Nama Bantuan', 'required');
-      $this->form_validation->set_rules('jenis', 'Jenis', 'required');
+      $this->form_validation->set_rules('nama_bantuan', 'Nama Bantuan', 'required|max_length[10]');
+      $this->form_validation->set_rules('jenis', 'Jenis', 'required|max_length[10]');
 
       if ($this->form_validation->run() == false) {
         $data['content'] = $this->load->view('bantuan/index', $data, true);
@@ -180,7 +195,7 @@ class Dashboard extends CI_Controller
       $email = $this->session->email;
       $data['user'] = $this->Profile_model->getuser($email);
 
-      $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'required');
+      $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'required|max_length[15]');
       $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
 
       if ($this->form_validation->run() == false) {
@@ -224,9 +239,8 @@ class Dashboard extends CI_Controller
       $email = $this->session->email;
       $data['berita'] = $this->Berita_model->getBerita();
       $data['user'] = $this->Profile_model->getuser($email);
-      $this->form_validation->set_rules('nama_berita', 'Nama Berita', 'required');
+      $this->form_validation->set_rules('nama_berita', 'Nama Berita', 'required|max_length[20]');
       $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
-      // $this->form_validation->set_rules('foto_berita', 'Foto Berita', 'required');
 
       if ($this->form_validation->run() == false) {
         // ini view

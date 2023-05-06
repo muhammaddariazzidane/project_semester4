@@ -20,15 +20,7 @@ class Bantuan extends CI_Controller
       $data['content'] = $this->load->view('bantuan/edit', $data, true);
       $this->load->view('layouts/dashboard', $data);
     } else {
-      $data = [
-        'nama_bantuan' => $this->input->post('nama_bantuan'),
-        'jenis' => $this->input->post('jenis')
-      ];
-      if ($this->input->post('nominal')) {
-        $data['nominal'] = $this->input->post('nominal');
-      }
-      $this->db->where('id', $id);
-      $this->db->update('bantuan', $data);
+      $this->Bantuan_model->update($id);
       $this->session->set_flashdata('success', 'Berhasil mengubah bantuan');
       redirect('dashboard/bantuan');
     }

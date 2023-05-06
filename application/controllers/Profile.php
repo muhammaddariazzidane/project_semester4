@@ -3,12 +3,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Profile extends CI_Controller
 {
-  // private $data = [];
   public function __construct()
   {
     parent::__construct();
     is_logged_in();
-    // $this->data['user'] = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row();
   }
   public function index()
   {
@@ -21,8 +19,7 @@ class Profile extends CI_Controller
     if ($this->form_validation->run() == false) {
       $email = $this->session->userdata('email');
       $data['user'] = $this->Profile_model->getuser($email);
-      // var_dump($data['user']);
-      // die;
+
       $data['content'] = $this->load->view('profile/index', $data, true);
 
       $data['title'] = 'Profile';
@@ -51,7 +48,7 @@ class Profile extends CI_Controller
             $data['image'] = $image;
           }
           // Dapatkan data user untuk mendapatkan nama file gambar lama
-          $user = $this->db->get_where('user', array('email' => $email))->row();
+          $user = $this->db->get_where('user', ['email' => $email])->row();
           $old_image = $user->image;
 
           $this->db->where('email', $email);
@@ -68,9 +65,9 @@ class Profile extends CI_Controller
           die;
         }
       } else {
-        $data = array(
+        $data = [
           'username' => $username
-        );
+        ];
 
         $this->db->where('email', $email);
         $this->db->update('user', $data);

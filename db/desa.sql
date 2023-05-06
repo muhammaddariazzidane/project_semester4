@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 01, 2023 at 01:36 PM
+-- Generation Time: May 06, 2023 at 02:37 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.0.28
 
@@ -51,7 +51,7 @@ CREATE TABLE `berita` (
   `id` int NOT NULL,
   `nama_berita` varchar(20) NOT NULL,
   `deskripsi` text NOT NULL,
-  `foto_berita` varchar(255) NOT NULL,
+  `foto_berita` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `user_id` int NOT NULL,
   `post_at` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -109,7 +109,7 @@ CREATE TABLE `kegiatan` (
   `id` int NOT NULL,
   `nama_kegiatan` varchar(15) NOT NULL,
   `deskripsi` text NOT NULL,
-  `foto_kegiatan` varchar(255) NOT NULL,
+  `foto_kegiatan` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `user_id` int NOT NULL,
   `post_at` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -152,10 +152,10 @@ INSERT INTO `penerima_bantuan` (`id`, `warga_id`, `bantuan_id`, `is_active`, `pr
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `image` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `role_id` int NOT NULL,
   `created_at` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -166,9 +166,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `image`, `email`, `password`, `role_id`, `created_at`) VALUES
 (7, 'RT', 'b96faa1a6d4fa53606f5e948e0fbcb04.png', 'rt@gmail.com', '$2y$10$hxEeIRpZqLQkO0oyh2Dh/.kBgMWZo9l5sWu7fnVMlPa4.wV/Rwn5u', 2, 1681049796),
-(11, 'admin tiga edit', '1ffac8e55c9d1a1e77760893892d6859.jpg', 'admin3@gmail.com', '$2y$10$ebdWHe7d3YRB.3jjksmeweTj2u9Cml/AyLt2gUxTSmrBdZvWgddiK', 1, 1682587877),
-(13, 'Admin', 'ef7b1113fe8592c47b018574f3abc8d0.jpg', 'admin@gmail.com', '$2y$10$w0Yf6HPWMoNqHYaJt.2yK.rld.afCJPcbQbeBFemOXKQ7x54Ncbpy', 1, 1682589177),
-(14, 'Zuser edit', 'default.jpg', 'userbisas@gmail.com', '$2y$10$bwiNma9ze8ZPtHCxmdRqR.0Y.3E4aiWzji6tmd1vvZ2RBqlcexEya', 3, 1682749150);
+(16, 'Admin', 'default.jpg', 'admin@gmail.com', '$2y$10$.MmpgOmqFIIWd/tdzzAEPuopitOXHdc6WaySCXZXnme7KXyYJI7Rm', 1, 1683337333),
+(18, 'tes registeradmin', 'default.jpg', 'tes@gmail.com', '$2y$10$sDn6gNRGK3gafrMqAZORseGZLViZf..rXUV2relKqFuQ2ezPog3IS', 1, 1683340259);
 
 -- --------------------------------------------------------
 
@@ -198,7 +197,7 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 
 CREATE TABLE `warga` (
   `id` int NOT NULL,
-  `nama` varchar(50) NOT NULL,
+  `nama` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nik` int NOT NULL,
   `tgl_lahir` date NOT NULL,
   `jenis_kelamin` varchar(10) NOT NULL,
@@ -228,7 +227,7 @@ INSERT INTO `warga` (`id`, `nama`, `nik`, `tgl_lahir`, `jenis_kelamin`, `alamat`
 
 CREATE TABLE `wisata` (
   `id` int NOT NULL,
-  `nama_wisata` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nama_wisata` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `deskripsi` text NOT NULL,
   `foto_pertama` varchar(128) NOT NULL,
   `foto_kedua` varchar(128) DEFAULT NULL,
@@ -240,7 +239,7 @@ CREATE TABLE `wisata` (
 --
 
 INSERT INTO `wisata` (`id`, `nama_wisata`, `deskripsi`, `foto_pertama`, `foto_kedua`, `foto_ketiga`) VALUES
-(10, 'Pantai Sarakan', '<p>Pantai Sarakan ini sebenarnya pantai yang cukup populer terutama untuk wisata bersama keluarga. Hampir sama dengan pantai-pantai lainnya di Karawang yang landau, ombak di Pantai Sarakan juga tidak terlalu besar. Jadi sangat aman untuk kita berenang di laut, tapi tetap saja saat anak-anak berenang tidak boleh sampai lepas dari pengawasan.</p>\r\n\r\n<ul>\r\n	<li>Alamat: Tambaksari, Tirtajaya, Kabupaten Karawang</li>\r\n	<li>Jam Operasional: 24 Jam</li>\r\n	<li>Tiket masuk: Rp5.000/orang</li>\r\n</ul>\r\n', '320424b6b77d4b85a5c6e24b8aaadb3a.jpg', '', '');
+(10, 'Pantai Sarakan ', '<p>Pantai Sarakan ini sebenarnya pantai yang cukup populer terutama untuk wisata bersama keluarga. Hampir sama dengan pantai-pantai lainnya di Karawang yang landau, ombak di Pantai Sarakan juga tidak terlalu besar. Jadi sangat aman untuk kita berenang di laut, tapi tetap saja saat anak-anak berenang tidak boleh sampai lepas dari pengawasan.</p>\r\n\r\n<ul>\r\n	<li>Alamat: Tambaksari, Tirtajaya, Kabupaten Karawang</li>\r\n	<li>Jam Operasional: 24 Jam</li>\r\n	<li>Tiket masuk: Rp5.000/orang</li>\r\n</ul>\r\n', '320424b6b77d4b85a5c6e24b8aaadb3a.jpg', '', '');
 
 --
 -- Indexes for dumped tables
@@ -350,7 +349,7 @@ ALTER TABLE `penerima_bantuan`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user_role`

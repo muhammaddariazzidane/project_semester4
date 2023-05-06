@@ -17,6 +17,7 @@
            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
            <span class="hide-menu">Dashboard</span>
          </li>
+
          <li class="sidebar-item">
            <a class="sidebar-link " href="<?= base_url('dashboard') ?>" aria-expanded="false">
              <span>
@@ -42,7 +43,14 @@
                <span class="hide-menu">Data Bantuan</span>
              </a>
            </li>
-
+           <li class="sidebar-item">
+             <a class="sidebar-link " href="<?= base_url('dashboard/data') ?>" aria-expanded="false">
+               <span>
+                 <i class="ti ti-users"></i>
+               </span>
+               <span class="hide-menu">Data User</span>
+             </a>
+           </li>
            <li class="nav-small-cap">
              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
              <span class="hide-menu">Informasi</span>
@@ -79,16 +87,14 @@
            <span class="hide-menu">AUTH</span>
          </li>
          <li class="sidebar-item">
-           <a class="sidebar-link " href="<?= base_url('auth/logout') ?>" aria-expanded="false">
+           <a class="sidebar-link" style="color: red;" href="<?= base_url('auth/logout') ?>" aria-expanded="false">
              <span>
                <i class="ti ti-login "></i>
              </span>
              <span class="hide-menu ">Logout</span>
            </a>
          </li>
-
        </ul>
-
      </nav>
      <!-- End Sidebar navigation -->
    </div>
