@@ -28,9 +28,9 @@
       <thead>
         <tr>
           <th scope="col">No</th>
-          <th scope="col">Nama Kegiatan</th>
+          <th scope="col">Nama Berita</th>
           <th scope="col">Deskripsi</th>
-          <th scope="col">Foto Kegiatan</th>
+          <th scope="col">Foto Berita</th>
           <th scope="col">Tanggal dipublish</th>
           <th scope="col">Author</th>
           <th scope="col">Aksi</th>

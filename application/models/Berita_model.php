@@ -63,7 +63,7 @@ class Berita_model extends CI_Model
   }
   public function getBerita()
   {
-    $this->db->select('berita.id, user.id as uID, user.username, user.email, user.image ,berita.nama_berita, berita.post_at, berita.deskripsi, berita.user_id, berita.foto_berita');
+    $this->db->select('berita.id, user.id as uID, user.username, user.email, user.image , berita.nama_berita, berita.post_at, berita.deskripsi, berita.user_id, berita.foto_berita');
     $this->db->join('user', 'berita.user_id = user.id');
     $this->db->from('berita');
     $this->db->order_by('berita.id DESC');

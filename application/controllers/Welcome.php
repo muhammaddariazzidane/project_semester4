@@ -48,7 +48,6 @@ class Welcome extends CI_Controller
 	{
 		$data['user'] = $this->data['user'];
 		$data['berita'] = $this->db->order_by('id DESC')->get('berita')->result();
-
 		// ini view yang akan di tampilkan
 		$data['content'] = $this->load->view('components/berita', $data, true);
 		// ini adalah layout nya

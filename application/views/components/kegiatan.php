@@ -29,7 +29,7 @@
       <?php endforeach ?>
 
     <?php else : ?>
-      <h4 class="text-center">Belum ada berita terbaru</h4>
+      <h4 class="text-center">Belum ada kegiatan terbaru</h4>
     <?php endif ?>
   </div>
 

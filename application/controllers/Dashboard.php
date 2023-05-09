@@ -239,6 +239,7 @@ class Dashboard extends CI_Controller
       $email = $this->session->email;
       $data['berita'] = $this->Berita_model->getBerita();
       $data['user'] = $this->Profile_model->getuser($email);
+
       $this->form_validation->set_rules('nama_berita', 'Nama Berita', 'required|max_length[20]');
       $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
 
