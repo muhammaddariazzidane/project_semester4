@@ -9,7 +9,8 @@ class Penerima_model extends CI_Model
       'warga_id' => $this->input->post('warga_id'),
       'bantuan_id' => $this->input->post('bantuan_id'),
       'is_active' => 0,
-      'printed' => 0
+      'printed' => 0,
+      'taken' => 0
     ];
     $this->db->insert('penerima_bantuan', $data);
   }
@@ -45,7 +46,6 @@ class Penerima_model extends CI_Model
     // $this->db->where('penerima_bantuan.is_active = 1');
     $this->db->order_by('penerima_bantuan.id DESC');
 
-    // $this->db->like('warga.nik', $keyword);
     $query = $this->db->get();
     return $query->result();
   }

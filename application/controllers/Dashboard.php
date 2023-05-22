@@ -15,17 +15,19 @@ class Dashboard extends CI_Controller
       $email = $this->session->email;
       $data['user'] = $this->Profile_model->getuser($email);
       $data['penerima'] = $this->Penerima_model->getPenerima();
+      $data['warga'] = $this->db->get('warga')->result();
+      $data['bantuan'] = $this->db->get('bantuan')->result();
 
       $this->form_validation->set_rules('warga_id', 'Nama Warga', 'required');
       $this->form_validation->set_rules('bantuan_id', 'Bantuan yang di dapat', 'required');
 
       if ($this->form_validation->run() == false) {
         // ini view yang akan di tampilkan
+
         $data['content'] = $this->load->view('dashboard/index', $data, true);
         // ini adalah layout nya
         $this->load->view('layouts/dashboard', $data);
         $this->session->set_flashdata('error', 'Semua field harus terisi');
-        // redirect('dashboard');
       } else {
         $warga_id = $this->input->post('warga_id');
         $bantuan_id = $this->input->post('bantuan_id');
