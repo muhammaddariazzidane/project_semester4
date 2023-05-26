@@ -89,7 +89,7 @@
          <li class="sidebar-item">
            <a class="sidebar-link" style="color: red;" href="<?= base_url('auth/logout') ?>" aria-expanded="false">
              <span>
-               <i class="ti ti-login "></i>
+               <i class="ti ti-logout "></i>
              </span>
              <span class="hide-menu ">Logout</span>
            </a>

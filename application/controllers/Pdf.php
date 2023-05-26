@@ -2,8 +2,6 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-// require_once APPPATH . '/libraries/phpqrcode/qrlib.php'; //mengimpor library PHP QR Code
-
 class Pdf extends CI_Controller
 {
   public function cetak($pID)

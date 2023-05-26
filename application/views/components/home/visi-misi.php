@@ -1,4 +1,4 @@
-<div class="container py-5 my-5">
+<div class="container py-5 my-5" id="visi-misi">
   <div class="row mx-4 mb-4">
     <h3 class="fw-semibold mb-5 text-center">Visi & Misi</h3>
   </div>

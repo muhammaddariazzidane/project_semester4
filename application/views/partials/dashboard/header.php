@@ -30,7 +30,12 @@
                   <p class="mb-0 fs-3">My Profile</p>
                 </a>
               </div>
-              <a href="<?= base_url('auth/logout') ?>" class="btn btn-danger mx-3 mt-2 d-block">Logout</a>
+              <div class="d-flex align-items-center gap-2 dropdown-item">
+                <a href="<?= base_url('auth/logout') ?>" class="d-flex text-danger justify-content-center mx-auto">
+                  <i class="ti ti-logout fs-6"></i>
+                  <p class="mb-0 fs-3 ms-2">Logout</p>
+                </a>
+              </div>
             </div>
           </div>
         </li>

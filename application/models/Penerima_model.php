@@ -3,14 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Penerima_model extends CI_Model
 {
-  public function store()
+  public function store($is_active)
   {
     $data = [
       'warga_id' => $this->input->post('warga_id'),
       'bantuan_id' => $this->input->post('bantuan_id'),
-      'is_active' => 0,
+      'is_active' => $is_active,
       'printed' => 0,
-      'taken' => 0
     ];
     $this->db->insert('penerima_bantuan', $data);
   }

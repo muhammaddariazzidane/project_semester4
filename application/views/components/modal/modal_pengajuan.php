@@ -12,8 +12,8 @@
             <label for="nama_warga" class="form-label">Nama warga</label>
             <select class="form-select select-live-search" name="warga_id" aria-label="Default select example">
               <option value="">Pilih warga</option>
-              <?php foreach ($warga as $b) : ?>
-                <option value="<?= $b['id'] ?>"><?= $b['nama'] ?></option>
+              <?php foreach ($warga as $w) : ?>
+                <option value="<?= $w->id ?>"><?= $w->nama ?></option>
               <?php endforeach ?>
             </select>
           </div>
@@ -22,7 +22,7 @@
             <select onchange="tes2()" name="bantuan_id" class="form-select" aria-label="Default select example">
               <option value="">Pilih bantuan</option>
               <?php foreach ($bantuan as $b) : ?>
-                <option value="<?= $b['id'] ?>" id="s2"><?= $b['nama_bantuan'] ?></option>
+                <option value="<?= $b->id ?>" id="s2"><?= $b->nama_bantuan ?></option>
               <?php endforeach ?>
             </select>
           </div>

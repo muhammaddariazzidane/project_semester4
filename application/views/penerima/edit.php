@@ -30,7 +30,7 @@
         </div>
         <div class="mb-3">
           <label for="alamat" class="form-label">Alamat</label>
-          <input type="text" name="alamat" class="form-control" value="<?= $data->alamat ?>" id="alamat" placeholder="">
+          <input type="text" name="alamat" class="form-control" value="<?= $data->alamat ?>" id="alamat" placeholder="alamat" readonly>
           <div id="validationServer03Feedback" class="invalid-feedback d-block">
 
           </div>

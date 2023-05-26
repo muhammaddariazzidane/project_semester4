@@ -23,8 +23,8 @@
             Profile Desa
           </a>
           <ul class="dropdown-menu border-0 shadow">
-            <li><a class="dropdown-item" href="#">Sejarah desa</a></li>
-            <li><a class="dropdown-item" href="#">Visi Misi</a></li>
+            <li><a class="dropdown-item" href="#sejarah">Sejarah desa</a></li>
+            <li><a class="dropdown-item" href="#visi-misi">Visi Misi</a></li>
 
           </ul>
         </li>

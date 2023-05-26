@@ -8,13 +8,12 @@ class Auth extends CI_Controller
     if ($this->session->username) {
       redirect('dashboard');
     }
-    $this->form_validation->set_rules('email', 'Email', 'required');
-    $this->form_validation->set_rules('password', 'Password', 'required');
+    $this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[25]', ['required' => 'Email harus diisi', 'valid_email' => 'Email tidak valid', 'max_length' => 'Email Terlalu Panjang']);
+    $this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Password harus diisi']);
 
     if ($this->form_validation->run() == false) {
       $data['title'] = 'Login';
       $data['content'] = $this->load->view('auth/login', '', true);
-      // ini adalah layout nya
       $this->load->view('layouts/auth', $data);
     } else {
       $this->authenticate();
@@ -25,7 +24,6 @@ class Auth extends CI_Controller
     if ($this->session->username) {
       redirect('/');
     }
-    // 
     $email = $this->input->post('email');
     $password = $this->input->post('password');
 

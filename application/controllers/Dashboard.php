@@ -10,20 +10,21 @@ class Dashboard extends CI_Controller
   }
   public function index()
   {
+    $role_id = $this->session->role_id;
+
     // jika yang mengakses bukan warga
-    if ($this->session->role_id != 3) {
+    if ($role_id != 3) {
       $email = $this->session->email;
       $data['user'] = $this->Profile_model->getuser($email);
       $data['penerima'] = $this->Penerima_model->getPenerima();
       $data['warga'] = $this->db->get('warga')->result();
       $data['bantuan'] = $this->db->get('bantuan')->result();
 
-      $this->form_validation->set_rules('warga_id', 'Nama Warga', 'required');
-      $this->form_validation->set_rules('bantuan_id', 'Bantuan yang di dapat', 'required');
+      $this->form_validation->set_rules('warga_id', 'Nama Warga', 'required', ['required' => 'Nama Warga Harus Diisi']);
+      $this->form_validation->set_rules('bantuan_id', 'Bantuan yang di dapat', 'required', ['required' => 'Bantuan Harus Diisi']);
 
       if ($this->form_validation->run() == false) {
         // ini view yang akan di tampilkan
-
         $data['content'] = $this->load->view('dashboard/index', $data, true);
         // ini adalah layout nya
         $this->load->view('layouts/dashboard', $data);
@@ -31,8 +32,6 @@ class Dashboard extends CI_Controller
       } else {
         $warga_id = $this->input->post('warga_id');
         $bantuan_id = $this->input->post('bantuan_id');
-        $role_id = $this->session->role_id;
-
 
         if ($role_id == 1) {
           $penerima = $this->db->get_where(
@@ -55,17 +54,9 @@ class Dashboard extends CI_Controller
             if ($penerima->warga_id == $warga_id) {
               $this->session->set_flashdata('info', 'Penerima BLT sudah ada');
               redirect('dashboard');
-              // var_dump($penerima->warga_id);
-              // die;
             } else {
-
-              $data = [
-                'warga_id' => $this->input->post('warga_id'),
-                'bantuan_id' => $this->input->post('bantuan_id'),
-                'is_active' => 1,
-                'printed' => 0
-              ];
-              $this->db->insert('penerima_bantuan', $data);
+              $is_active = 1;
+              $this->Penerima_model->store($is_active);
               $this->session->set_flashdata('success', 'berhasil menambahkan penerima BLT');
               redirect('dashboard');
             }
@@ -82,9 +73,8 @@ class Dashboard extends CI_Controller
           )->row();
 
           if ($penerima) {
-            // cek warga penerima blt sudah di aktivasi atau belum
+            // jika penerima BLT belum diaktivasi
             if ($penerima->is_active != 1) {
-
               $this->session->set_flashdata('warning', 'Silahkan tunggu warga tersebut diaktivasi oleh admin');
               redirect('dashboard');
             } else {
@@ -97,10 +87,8 @@ class Dashboard extends CI_Controller
               redirect('dashboard');
             }
           } else {
-            // var_dump($warga_id);
-            // die;
-            // insert jika data belum ada
-            // $this->Penerima_model->store();
+            $is_active = 0;
+            $this->Penerima_model->store($is_active);
             $this->session->set_flashdata('success', 'berhasil mengajukan warga, silahkan tunggu diaktivasi oleh admin');
             redirect('dashboard');
           }
@@ -120,8 +108,7 @@ class Dashboard extends CI_Controller
     $data['all'] = $this->User_model->getUsers();
     $email = $this->session->email;
     $data['user'] = $this->Profile_model->getuser($email);
-    // var_dump($data['user']);
-    // die;
+
     $data['content'] = $this->load->view('data/index', $data, true);
     // ini adalah layout nya
     $this->load->view('layouts/dashboard', $data);

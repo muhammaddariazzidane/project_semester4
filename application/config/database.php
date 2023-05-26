@@ -78,6 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
+	// 'database' => 'fitur',
 	'database' => 'desa',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
